@@ -2,6 +2,8 @@ var express = require('express');
 var mbaasApi = require('fh-mbaas-api');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var account = require('./lib/account');
+var bodyParser = require('body-parser');
+
 // Define custom sync handlers and interceptors
 require('./lib/sync.js');
 
@@ -17,6 +19,7 @@ app.use('/mbaas', mbaasExpress.mbaas);
 
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
+app.use(bodyParser());
 
 // Add extra routes here
 app.post('/account/login', account.login);
