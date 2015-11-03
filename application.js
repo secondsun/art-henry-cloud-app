@@ -1,12 +1,12 @@
 var express = require('express');
 var mbaasApi = require('fh-mbaas-api');
 var mbaasExpress = mbaasApi.mbaasExpress();
-
+var account = require('./lib/account.js')();
 // Define custom sync handlers and interceptors
 require('./lib/sync.js');
 
 // Securable endpoints: list the endpoints which you want to make securable here
-var securableEndpoints = [];
+var securableEndpoints = ['account'];
 
 var app = express();
 
@@ -14,10 +14,12 @@ var app = express();
 app.use('/sys', mbaasExpress.sys(securableEndpoints));
 app.use('/mbaas', mbaasExpress.mbaas);
 
+
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
 // Add extra routes here
+app.post('/account/login', account.login);
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
