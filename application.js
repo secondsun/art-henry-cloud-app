@@ -1,7 +1,7 @@
 var express = require('express');
 var mbaasApi = require('fh-mbaas-api');
 var mbaasExpress = mbaasApi.mbaasExpress();
-var account = require('./lib/account.js')();
+var account = require('./lib/account');
 // Define custom sync handlers and interceptors
 require('./lib/sync.js');
 
