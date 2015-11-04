@@ -23,6 +23,7 @@ app.use(bodyParser());
 
 // Add extra routes here
 app.post('/account/login', account.login);
+app.get('/account/:accountId', account.getAccount);
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
