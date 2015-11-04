@@ -15,7 +15,7 @@ var app = express();
 // Note: the order which we add middleware to Express here is important!
 app.use('/sys', mbaasExpress.sys(securableEndpoints));
 app.use('/mbaas', mbaasExpress.mbaas);
-
+app.use(mbaasExpress.fhauth({cache: true, expire: 60*60}));
 
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
