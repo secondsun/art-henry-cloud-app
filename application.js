@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 require('./lib/sync.js');
 
 // Securable endpoints: list the endpoints which you want to make securable here
-var securableEndpoints = ['account'];
+var securableEndpoints = ['/account/:accountId'];
 
 var app = express();
 
