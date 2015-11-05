@@ -2,7 +2,10 @@ var express = require('express');
 var mbaasApi = require('fh-mbaas-api');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var account = require('./lib/account');
+var meme = require('./lib/meme');
 var bodyParser = require('body-parser');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 // Define custom sync handlers and interceptors
 require('./lib/sync.js');
@@ -19,8 +22,10 @@ app.use(mbaasExpress.fhauth({cache: true, expire: 60*60}));
 
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
-app.use(bodyParser());
 
+app.post('/meme/create', upload.single('meme'), meme.create);
+
+app.use(bodyParser());
 // Add extra routes here
 app.post('/account/login', account.login);
 app.get('/account/:accountId', account.getAccount);
