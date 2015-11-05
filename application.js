@@ -18,11 +18,13 @@ var app = express();
 // Note: the order which we add middleware to Express here is important!
 app.use('/sys', mbaasExpress.sys(securableEndpoints));
 app.use('/mbaas', mbaasExpress.mbaas);
-app.use(mbaasExpress.fhauth({cache: true, expire: 60*60}));
+app.use(mbaasExpress.fhauth({cache: true, expire: 60*60*24*365}));
+
 
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
+app.use('/static', express.static('static'));
 app.post('/meme/create', upload.single('image'), meme.create);
 
 app.use(bodyParser());
