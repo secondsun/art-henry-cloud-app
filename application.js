@@ -23,7 +23,7 @@ app.use(mbaasExpress.fhauth({cache: true, expire: 60*60}));
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-app.post('/meme/create', upload.single('meme'), meme.create);
+app.post('/meme/create', upload.single('image'), meme.create);
 
 app.use(bodyParser());
 // Add extra routes here
