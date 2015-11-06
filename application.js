@@ -26,6 +26,7 @@ app.use(mbaasExpress.fhmiddleware());
 
 app.use('/static', express.static('static'));
 app.post('/meme/create', upload.single('image'), meme.create);
+app.get('/meme/refresh', meme.refresh);
 
 app.use(bodyParser());
 // Add extra routes here
