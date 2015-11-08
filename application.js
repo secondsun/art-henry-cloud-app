@@ -31,7 +31,6 @@ app.get('/meme/refresh', meme.refresh);
 app.use(bodyParser());
 // Add extra routes here
 app.post('/account/login', account.login);
-app.get('/account/:accountId', account.getAccount);
 app.get('/account/me', account.getMe);
 
 // Important that this is last!
